@@ -5,6 +5,7 @@ TestNG TDD Framework building steps:
 1. Add the project dependencies
 2. Add .gitignore file
 3. Create the package structure
-4.
+4. Add utility classes ConfigReader, CSVReader etc
+5.
 
 
