@@ -1,6 +1,9 @@
 package com.weborders.tests;
 
 import com.sun.javafx.geom.Edge;
+import com.weborders.pages.HomePage;
+import com.weborders.pages.LoginPage;
+import com.weborders.pages.ProductsPage;
 import com.weborders.utilities.ConfigReader;
 import com.weborders.utilities.Driver;
 import com.weborders.utilities.SeleniumUtils;
@@ -17,6 +20,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
@@ -56,18 +60,53 @@ public class LoginTests extends TestBase {
 
     }
 
+    @Test(groups =  {"smoke"} )
+    public void testHeaderValues() throws IOException {
+
+
+
+//
+
+
+        driver.get(ConfigReader.getProperty("url"));
+
+        LoginPage loginPage = new LoginPage();
+        loginPage.loginWithValidCredentials();
+
+
+        HomePage homepage = new HomePage();
+        homepage.allProductsLink.click();
+
+
+        ProductsPage productsPage = new ProductsPage();
+
+        SeleniumUtils.waitForVisibilityOfMultipleElementsAsList(productsPage.tableHeaders, 5);
+
+
+
+        List<String> elementsText = SeleniumUtils.getElementsText(productsPage.tableHeaders);
+
+
+
+        Assert.assertEquals(elementsText, Arrays.asList("Product name" , "Price", "Discount"));
+
+
+
+    }
+
 
     @Test (groups = {"homepage", "flaky"})
     public void testLoginWithInValidCredentials(){
 
         Driver.getDriver().navigate().to(ConfigReader.getProperty("url"));
 
-        driver.findElement(By.id("ctl00_MainContent_username")).sendKeys("Heloo", Keys.TAB, "bdcnbsgh", Keys.ENTER);
+       LoginPage loginPage =  new LoginPage();
+
+       loginPage.username.sendKeys("Heloo", Keys.TAB, "bdcnbsgh", Keys.ENTER);
 
 
-        WebElement errorMessage = driver.findElement(By.id("ctl00_MainContent_status"));
 
-        Assert.assertTrue(errorMessage.isDisplayed());
+        Assert.assertTrue(loginPage.errorMessage.isDisplayed());
 
     }
 

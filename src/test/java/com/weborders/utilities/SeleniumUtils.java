@@ -43,11 +43,26 @@ public class SeleniumUtils {
     }
     // Explicit Wait methods
 
+    public static void waitForVisibility(WebElement element, int seconds) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(seconds));
+        wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(element)));
+    }
+
+
     public static void waitForVisibility(By locator, int seconds) {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(seconds));
         wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(locator)));
     }
 
+    public static void waitForVisibilityOfMultipleElementsAsList(List<WebElement> list, int seconds) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(seconds));
+        wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfAllElements(list)));
+    }
+
+    public static void waitForClickablility(WebElement element, int seconds) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(seconds));
+        wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(element)));
+    }
     public static void waitForClickablility(By locator, int seconds) {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(seconds));
         wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(locator)));
