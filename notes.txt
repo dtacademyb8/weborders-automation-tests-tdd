@@ -6,6 +6,13 @@ TestNG TDD Framework building steps:
 2. Add .gitignore file
 3. Create the package structure
 4. Add utility classes ConfigReader, CSVReader etc
-5.
+5. Add the testng.xml files for smoke,regression tests etc
+6.
 
 
+ConfigReader - utility class that reads from the .properties file
+config.properties - a text file that stores project specific configuration as key-value pairs
+
+
+Page Object Model - a design pattern that simplifies writing UI tests by creating a separate Page Object Classes where the element of the page are stored. We usually use
+Page Object Model along with Page Factory where we use @FindBy annotations and a constructor with factory method PageFactory.initElements() method.

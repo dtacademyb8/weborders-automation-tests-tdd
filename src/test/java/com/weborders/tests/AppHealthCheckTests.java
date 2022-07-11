@@ -12,7 +12,7 @@ public class AppHealthCheckTests extends TestBase{
 
         driver.get(ConfigReader.getProperty("url"));
         Thread.sleep(1000);
-        Assert.assertEquals(driver.getTitle(), "Web Orderz Bclsd,dvj");
+        Assert.assertEquals(driver.getTitle(), "Web Orders");
 
 
     }
