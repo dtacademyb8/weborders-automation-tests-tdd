@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.SkipException;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -57,7 +58,7 @@ public class Login extends TestBase {
 
 
 
-//
+
 
 
         driver.get(ConfigReader.getProperty("url"));
@@ -79,8 +80,11 @@ public class Login extends TestBase {
         List<String> elementsText = SeleniumUtils.getElementsText(productsPage.tableHeaders);
 
 
+        throw new SkipException("Test Skipped"); // to explicitly mark the test result as SKIPPED
 
-        Assert.assertEquals(elementsText, Arrays.asList("Product name" , "Price", "Discount"));
+
+
+//        Assert.assertEquals(elementsText, Arrays.asList("Product name" , "Price", "Discount"));
 
 
 

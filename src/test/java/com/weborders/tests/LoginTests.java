@@ -38,23 +38,27 @@ public class LoginTests extends TestBase {
 //        properties.load(fis);
 //        fis.close();
 
-
+        logger.info("Initializing the browser. Navigating to a url");
         driver.get(ConfigReader.getProperty("url"));
 
+        logger.info("Entering valid credentials");
         driver.findElement(By.id("ctl00_MainContent_username")).sendKeys(ConfigReader.getProperty("username"), Keys.TAB, ConfigReader.getProperty("password"), Keys.ENTER);
 
 
-        driver.findElement(By.linkText("View all products")).click();
+        logger.info("Clicking on products link");
+        driver.findElement(By.linkText("View all product")).click();
 
-        SeleniumUtils.waitForVisibility(By.xpath("cdsd"), 4);
+//        SeleniumUtils.waitForVisibility(By.xpath("cdsd"), 4);
         List<WebElement> elements = driver.findElements(By.xpath("//table[@class='ProductsTable']//th"));
 
 
         List<String> elementsText = SeleniumUtils.getElementsText(elements);
 
-        System.out.println(elementsText);
 
+        logger.info("Asserting the title");
         Assert.assertEquals(driver.getTitle(), "Web Orders");
+
+
 
 
 
