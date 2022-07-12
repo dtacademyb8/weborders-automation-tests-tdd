@@ -128,7 +128,7 @@ public class SeleniumUtils {
         File source = ts.getScreenshotAs(OutputType.FILE);
         String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
         String fileName = name + date + ".png";
-        String target = System.getProperty("user.dir") + "/test-output/extentReports/" + fileName;
+        String target = System.getProperty("user.dir") + "/target/extentReports/" + fileName;
         File finalDestination = new File(target);
         try {
             FileUtils.copyFile(source, finalDestination);

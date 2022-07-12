@@ -70,11 +70,9 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.0.0-M7</version>
                     <configuration>
-<!--                       <suiteXmlFiles>-->
-<!--                           <suiteXmlFile>smoke-test.xml</suiteXmlFile>-->
-<!--                       </suiteXmlFiles>-->
+
                         <suiteXmlFiles>
-<!--                             using a placeholder will make our test runs flexible-->
+<!--                             using a placeholder will make our test runs flexible, when using this option the xml file name must be passed thru command line with -D switch-->
                             <suiteXmlFile>${xmlFile}</suiteXmlFile>
                         </suiteXmlFiles>
                     </configuration>
