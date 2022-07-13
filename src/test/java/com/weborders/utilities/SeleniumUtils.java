@@ -107,12 +107,11 @@ public class SeleniumUtils {
         Wait<WebDriver> wait = new FluentWait<WebDriver>(Driver.getDriver())
                 .withTimeout(Duration.ofSeconds(timeOutSeconds)).pollingEvery(Duration.ofSeconds(pollingSeconds))
                 .ignoring(NoSuchElementException.class);
-        WebElement element = wait.until(new Function<WebDriver, WebElement>() {
+        return wait.until(new Function<WebDriver, WebElement>() {
             public WebElement apply(WebDriver driver) {
                 return webElement;
             }
         });
-        return element;
     }
     public static boolean elementExists(WebElement element, int seconds) {
         try {

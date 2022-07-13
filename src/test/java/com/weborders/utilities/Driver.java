@@ -21,10 +21,10 @@ public class Driver {
 
         if(driver == null ){
 
-            String browser = System.getProperty("browser");  //read the browser type from command line, if no browser is passed value returned will be null
+            String browser = System.getProperty("browser");  //read the browser type from command line, if no browser is passed the returned value  will be null
 
             if(browser == null){ // if no browser is passed thru command line
-                browser = ConfigReader.getProperty("browser"); // Read the browser type from .properties file
+                browser = ConfigReader.getProperty("browser"); // Read the browser type from config.properties file
             }
 
 

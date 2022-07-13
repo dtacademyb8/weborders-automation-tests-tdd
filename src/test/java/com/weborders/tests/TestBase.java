@@ -2,18 +2,11 @@ package com.weborders.tests;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentReporter;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.weborders.utilities.ConfigReader;
 import com.weborders.utilities.Driver;
 import com.weborders.utilities.SeleniumUtils;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.opera.OperaDriver;
-import org.openqa.selenium.safari.SafariDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
@@ -28,23 +21,23 @@ public abstract class TestBase {
 
 
     protected WebDriver driver;
-    protected static ExtentReports extentReports;  // manages the report generation
+    protected static ExtentReports extentReport;  // manages the report generation
     protected static ExtentSparkReporter htmlReport; // creates the html report file
     protected static ExtentTest logger; // manages the individual test steps and logs
     @BeforeSuite(alwaysRun = true)
     public void setupReport(){
-          extentReports =  new ExtentReports();
+          extentReport =  new ExtentReports();
           String pathToReportFile =   System.getProperty("user.dir")+"/target/extentReports/index.html";
           htmlReport = new ExtentSparkReporter(pathToReportFile);
-          extentReports.attachReporter(htmlReport);
+          extentReport.attachReporter(htmlReport);
 
 
-            extentReports.setSystemInfo("Name", "Web Orders Automated Tests");
-            extentReports.setSystemInfo("Environment", "QA");
-            extentReports.setSystemInfo("SDET", "Johnny Cash");
-            extentReports.setSystemInfo("OS", System.getProperty("os.name"));
-            extentReports.setSystemInfo("Browser", ConfigReader.getProperty("browser"));
-            extentReports.setSystemInfo("Homepage", ConfigReader.getProperty("url"));
+            extentReport.setSystemInfo("Name", "Web Orders Automated Tests");
+            extentReport.setSystemInfo("Environment", "QA");
+            extentReport.setSystemInfo("SDET", "Johnny Cash");
+            extentReport.setSystemInfo("OS", System.getProperty("os.name"));
+            extentReport.setSystemInfo("Browser", ConfigReader.getProperty("browser"));
+            extentReport.setSystemInfo("Homepage", ConfigReader.getProperty("url"));
 
     }
 
@@ -56,7 +49,7 @@ public abstract class TestBase {
         driver = Driver.getDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.manage().window().maximize();
-        logger = extentReports.createTest(method.getName());  // create the logger object
+        logger = extentReport.createTest(method.getName());  // create the logger object
     }
 
 
@@ -81,7 +74,7 @@ public abstract class TestBase {
 
     @AfterSuite(alwaysRun = true)
     public void tearDownReport(){
-           extentReports.flush();
+           extentReport.flush();
     }
 
 }
