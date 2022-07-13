@@ -123,6 +123,16 @@ public class LoginTests extends TestBase {
 
 
     }
+    
+      @Test(groups =  {"smoke"} )
+    public void testCaseForDemo2() throws IOException {
+
+
+        Assert.assertEquals(true, true);
+
+
+
+    }
 
 
 
