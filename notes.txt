@@ -16,3 +16,85 @@ config.properties - a text file that stores project specific configuration as ke
 
 Page Object Model - a design pattern that simplifies writing UI tests by creating a separate Page Object Classes where the element of the page are stored. We usually use
 Page Object Model along with Page Factory where we use @FindBy annotations and a constructor with factory method PageFactory.initElements() method.
+
+
+Singleton Design Pattern -> A design pattern where an instantiation of a class is restricted to only one object.
+                           An example could be the Driver class where the Webdriver instantiation is done by getDriver() method that checks if the the WebDriver obj is already initialized.
+                           The purpose of using this pattern is to prevent multiple WebDriver objects being initialized.
+Page Object Model Design Pattern -> A design pattern specific to Selenium based test frameworks which is implemented by creating a separate class for each page of our
+                                    application which stores the page web elements and methods.
+                                    The purpose is re-usability, maintainability and readability.
+PageFactory design pattern ->      This pattern uses @FindBy annotations to locate the elements and makes our Page classes more readable and concise.
+                                   We implement it by using PageFactory.initElements() method in a constructor of the page class
+                                   We also can use @FindBys to create chained matches and @FindAll to match multiple webelements on the page
+ Maven plugin vs dependency ->     Dependency -> collection of libraries(jar files) that is used for specific purpose. Example, Faker dependency for generating mock data
+                                   Plugin -> Maven related tool that executes specific task. Example: Maven Surefire plugin executes tests. Maven is a collection of multiple of these plugins
+ Maven Lifecycle           ->      Lifecycle -> Executable maven command that performs specific task. Each command executes its previous commands first. The order of execution is ->   clean
+                                                                                                                                                                                        validate
+                                                                                                                                                                                        compile
+                                                                                                                                                                                        test
+                                                                                                                                                                                        package
+                                                                                                                                                                                        verify
+                                                                                                                                                                                        install
+                                                                                                                                                                                        site
+                                                                                                                                                                                        deploy
+ Run tests through CMD       ->      We run the tests through command line with "mvn test" command in our framework using Maven Surefire plugin
+                                     We add a placeholder for the xml file name in Surefire plugin (${file}) and when running tests pass the name of the xml file with -D option
+                                     mvn test -Dfile=regression.xml
+ Cross-browser testing       ->    We implement it in our framework by passing the browser type through command line like: mvn test -Dbrowser=chrome
+                                   And we simply execute multiple commands for different browser types
+                                   We can use Windows batch file or Mac shell script file to execute all commands at once
+  TestNG Selenium TDD Framework components:
+  Java - write automation code
+  TestNG - organize, configure, and execute tests
+  Selenium - write code to interact with web browser
+  Webdrivermanager(bonigarcia) - manage browser drivers
+  Maven - define the project structure, manage dependencies, run tests through command line
+  Faker - generate mock data for data driven testing
+  Extent report - generate enhanced html report
+  .gitignore file - to exclude non-project related files from being version controlled (tracked and pushed to GitHub)
+  config.properties file - to store project's global variables such as env variables, usernames, passwords, paths, etc.
+  testng.xml file/s - control and configure the execution of the tests
+  Reporting - done in our framework by Extent Reports. Another popular library is Allure Reports. Reporting tool can vary from project to project
+
+
+
+
+  Parallel Tests - running groups of tests in parallel to reduce execution time and get faster feedback
+                   How to implement:
+                   1. Setup Selenium Grid with Hub and multiple nodes and direct your tests to the central Hub which automatically distributes
+                      the tests among nodes.
+                      Pros: More scalable, reliable, little maintenance after initial setup.
+                      Cons: Complex to setup, can be more costly than native setup, especially when using third party cloud services
+                             such as SauceLabs, BrowserStack.
+                   2. Setup natively through TestNG xml file.
+                      a)Add parallel attribute to <suite> tag along with thread-count attribute where you indicate the amount of threads
+                      Default thread-count is 5 if not given.
+                      Parallel attribute can take methods, classes and tests.
+                      2)Adjust the singleton Driver class with ThreadLocal<WebDriver> to give each thread its own WebDriver
+  Re-run failed
+  tests          -  Let's say you have 800 tests in your regression suite and 10 of them failed. How to re-run those 10 without running all of them again?
+                    TestNG automatically generates testng-failed.xml file in surefire-reports folder and I locate an run that file.
+Types of tests the framework supports:
+  Smoke,
+  Regression,
+  Functional,
+  Integration,
+  UI,
+  Cross Browser,
+  Headless,
+  Parallel,
+  Data-Driven tests
+  End-to-end testing (horizontal(within one layer), vertical(involving multiple layers))
+  TestNG Selenium TDD Framework Building Steps:
+  1. Create a maven project
+  2. Add project related dependencies (Selenium Java, TestNG, WebdriverManager,etc)
+  3. Create the package structure
+  4. Add .gitignore file
+  5. Add the utility classes (SeleniumUtils, Driver, ConfigReader, CSVReader)
+  6. Add the .properties file with the project specific global variables
+  7. Add TestBase class with Before and After annotations
+  8. Add Extent reports for visual html reports
+  9. Add Parallel test support.
+  10. Add Test classes with tests
+  11. Add Page classes with locators

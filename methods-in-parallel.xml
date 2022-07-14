@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="UI Tests" parallel="methods" thread-count="15">
+
+<test name="Parallel methods">
+
+
+<!--     <classes>-->
+<!--         <class name="com.weborders.tests.LoginTests"/>-->
+<!--     </classes>-->
+
+    <packages>
+        <package name=".*"></package>
+    </packages>
+
+
+
+
+</test>
+
+</suite>
+

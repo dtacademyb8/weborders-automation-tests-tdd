@@ -46,7 +46,7 @@ public class LoginTests extends TestBase {
 
 
         logger.info("Clicking on products link");
-        driver.findElement(By.linkText("View all product")).click();
+        driver.findElement(By.linkText("View all products")).click();
 
 //        SeleniumUtils.waitForVisibility(By.xpath("cdsd"), 4);
         List<WebElement> elements = driver.findElements(By.xpath("//table[@class='ProductsTable']//th"));
@@ -84,7 +84,7 @@ public class LoginTests extends TestBase {
 
         ProductsPage productsPage = new ProductsPage();
 
-        SeleniumUtils.waitForVisibilityOfMultipleElementsAsList(productsPage.tableHeaders, 5);
+//        SeleniumUtils.waitForVisibilityOfMultipleElementsAsList(productsPage.tableHeaders, 5);
 
 
 
@@ -114,25 +114,8 @@ public class LoginTests extends TestBase {
 
     }
 
-    @Test(groups =  {"smoke"} )
-    public void testCaseForDemo() throws IOException {
 
 
-        Assert.assertEquals(true, true);
-
-
-
-    }
-    
-      @Test(groups =  {"smoke"} )
-    public void testCaseForDemo2() throws IOException {
-
-
-        Assert.assertEquals(true, true);
-
-
-
-    }
 
 
 

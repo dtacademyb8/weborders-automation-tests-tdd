@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="UI Tests" parallel="tests" thread-count="2">
+
+<test name="Smoke Tests"  >
+
+
+    <groups>
+
+        <run>
+            <include name="smoke"/>
+        </run>
+
+    </groups>
+
+
+
+
+
+
+    <packages>
+
+<!-- include tests from all packages-->
+         <package name=".*"/>
+
+
+     </packages>
+
+
+
+
+</test>
+
+
+    <test name="Flaky Tests">
+
+
+        <groups>
+
+            <run>
+                <include name="flaky"/>
+            </run>
+
+        </groups>
+
+
+
+
+
+
+        <packages>
+
+            <!-- include tests from all packages-->
+            <package name=".*"/>
+
+
+        </packages>
+
+
+
+
+    </test>
+
+</suite>
+
