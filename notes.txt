@@ -1,13 +1,17 @@
 
 
-TestNG TDD Framework building steps:
-
-1. Add the project dependencies
-2. Add .gitignore file
-3. Create the package structure
-4. Add utility classes ConfigReader, CSVReader etc
-5. Add the testng.xml files for smoke,regression tests etc
-6.
+TestNG Selenium TDD Framework Building Steps:
+  1. Create a maven project
+  2. Add project related dependencies (Selenium Java, TestNG, WebdriverManager,etc)
+  3. Create the package structure
+  4. Add .gitignore file
+  5. Add the utility classes (SeleniumUtils, Driver, ConfigReader, CSVReader)
+  6. Add the .properties file with the project specific global variables
+  7. Add TestBase class with Before and After annotations
+  8. Add Extent reports for visual html reports
+  9. Add Parallel and Cross-Browser test support.
+  10. Add Test classes with tests
+  11. Add Page classes with locators
 
 
 ConfigReader - utility class that reads from the .properties file
@@ -44,6 +48,8 @@ PageFactory design pattern ->      This pattern uses @FindBy annotations to loca
  Cross-browser testing       ->    We implement it in our framework by passing the browser type through command line like: mvn test -Dbrowser=chrome
                                    And we simply execute multiple commands for different browser types
                                    We can use Windows batch file or Mac shell script file to execute all commands at once
+
+
   TestNG Selenium TDD Framework components:
   Java - write automation code
   TestNG - organize, configure, and execute tests
@@ -72,9 +78,13 @@ PageFactory design pattern ->      This pattern uses @FindBy annotations to loca
                       Default thread-count is 5 if not given.
                       Parallel attribute can take methods, classes and tests.
                       2)Adjust the singleton Driver class with ThreadLocal<WebDriver> to give each thread its own WebDriver
+
   Re-run failed
   tests          -  Let's say you have 800 tests in your regression suite and 10 of them failed. How to re-run those 10 without running all of them again?
-                    TestNG automatically generates testng-failed.xml file in surefire-reports folder and I locate an run that file.
+                    TestNG automatically generates testng-failed.xml file in surefire-reports folder, I locate and run that file.
+
+
+
 Types of tests the framework supports:
   Smoke,
   Regression,
@@ -86,15 +96,3 @@ Types of tests the framework supports:
   Parallel,
   Data-Driven tests
   End-to-end testing (horizontal(within one layer), vertical(involving multiple layers))
-  TestNG Selenium TDD Framework Building Steps:
-  1. Create a maven project
-  2. Add project related dependencies (Selenium Java, TestNG, WebdriverManager,etc)
-  3. Create the package structure
-  4. Add .gitignore file
-  5. Add the utility classes (SeleniumUtils, Driver, ConfigReader, CSVReader)
-  6. Add the .properties file with the project specific global variables
-  7. Add TestBase class with Before and After annotations
-  8. Add Extent reports for visual html reports
-  9. Add Parallel test support.
-  10. Add Test classes with tests
-  11. Add Page classes with locators
