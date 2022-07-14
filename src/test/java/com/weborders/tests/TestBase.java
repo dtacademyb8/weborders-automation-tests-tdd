@@ -27,7 +27,9 @@ public abstract class TestBase {
     @BeforeSuite(alwaysRun = true)
     public void setupReport(){
           extentReport =  new ExtentReports();
-          String pathToReportFile =   System.getProperty("user.dir")+"/target/extentReports/index.html";
+          String browser = System.getProperty("browser");
+          String name = browser == null ? "" : browser;
+          String pathToReportFile =   System.getProperty("user.dir")+"/target/extentReports/"+name+"extentReport.html";
           htmlReport = new ExtentSparkReporter(pathToReportFile);
           extentReport.attachReporter(htmlReport);
 
@@ -36,7 +38,7 @@ public abstract class TestBase {
             extentReport.setSystemInfo("Environment", "QA");
             extentReport.setSystemInfo("SDET", "Johnny Cash");
             extentReport.setSystemInfo("OS", System.getProperty("os.name"));
-            extentReport.setSystemInfo("Browser", ConfigReader.getProperty("browser"));
+            extentReport.setSystemInfo("Browser", browser == null ? ConfigReader.getProperty("browser"): browser);
             extentReport.setSystemInfo("Homepage", ConfigReader.getProperty("url"));
 
     }
