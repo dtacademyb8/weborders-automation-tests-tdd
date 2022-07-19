@@ -48,25 +48,7 @@ PageFactory design pattern ->      This pattern uses @FindBy annotations to loca
  Cross-browser testing       ->    We implement it in our framework by passing the browser type through command line like: mvn test -Dbrowser=chrome
                                    And we simply execute multiple commands for different browser types
                                    We can use Windows batch file or Mac shell script file to execute all commands at once
-
-
-  TestNG Selenium TDD Framework components:
-  Java - write automation code
-  TestNG - organize, configure, and execute tests
-  Selenium - write code to interact with web browser
-  Webdrivermanager(bonigarcia) - manage browser drivers
-  Maven - define the project structure, manage dependencies, run tests through command line
-  Faker - generate mock data for data driven testing
-  Extent report - generate enhanced html report
-  .gitignore file - to exclude non-project related files from being version controlled (tracked and pushed to GitHub)
-  config.properties file - to store project's global variables such as env variables, usernames, passwords, paths, etc.
-  testng.xml file/s - control and configure the execution of the tests
-  Reporting - done in our framework by Extent Reports. Another popular library is Allure Reports. Reporting tool can vary from project to project
-
-
-
-
-  Parallel Tests - running groups of tests in parallel to reduce execution time and get faster feedback
+Parallel Tests - running groups of tests in parallel to reduce execution time and get faster feedback
                    How to implement:
                    1. Setup Selenium Grid with Hub and multiple nodes and direct your tests to the central Hub which automatically distributes
                       the tests among nodes.
@@ -84,6 +66,33 @@ PageFactory design pattern ->      This pattern uses @FindBy annotations to loca
                     TestNG automatically generates testng-failed.xml file in surefire-reports folder, I locate and run that file.
 
 
+
+   Can you explain your framework?
+
+   More general -> more specific
+
+   Description -> Components -> Architecture -> Specific packages -> Classes/Utilities
+
+
+  TestNG Selenium TDD Framework components:
+  Java - programming language to write code
+  Selenium - write code to interact with web browser
+  TestNG - organize, configure, and execute tests
+  Webdrivermanager(bonigarcia) - manage browser drivers
+  Maven - define the project structure, manage dependencies, run tests through command line
+  Faker - generate mock data for data driven testing
+  Extent report - generate enhanced html report and add logs
+  .gitignore file - to exclude non-project related files from being version controlled (tracked and pushed to GitHub)
+  config.properties file - to store project's global variables such as env variables, usernames, passwords, paths, etc.
+  testng.xml file/s - control and configure the execution of the tests
+  Utility Classes - classes that support our automated tests
+
+
+Architecture:
+
+     -Design patterns used: Page Object Model and Page Factory, Singleton
+     -OOP Principles used: Inheritance, Abstraction, Polymorphism, Encapsulation
+     -Base classes
 
 Types of tests the framework supports:
   Smoke,
